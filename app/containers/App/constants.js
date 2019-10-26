@@ -8,3 +8,5 @@
  * Follow this format:
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
+export const DEFAULT_ACTION = 'App/DEFAULT_ACTION';
+export const UPDATE_USER_DETAILS = 'App/UPDATE_USER_DETAILS';

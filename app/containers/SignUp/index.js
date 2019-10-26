@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /**
  *
  * SignUp
@@ -12,25 +13,141 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
 import injectReducer from 'utils/injectReducer';
-import makeSelectSignUp, { selectErrorMsg } from './selectors';
+import injectSaga from 'utils/injectSaga';
+import Header from 'components/Header';
+import Input from 'components/Input';
+import Location from 'icons/Location';
+import makeSelectSignUp, {
+  selectErrorMsg,
+  selectLoading,
+  selectSuccessMsg,
+} from './selectors';
 import reducer from './reducer';
-import { updateError } from './actions';
+import saga from './saga';
+import { updateError, registration, updateSuccessMsg } from './actions';
+import {
+  SignUpWrapper,
+  SignUpContainer,
+  SubmitButtonWrapper,
+  SubmitButton,
+  SignUpTitle,
+  ErrorMessageContainer,
+} from './elements';
+import { updateUserDetails } from '../App/actions';
+import { selectUserDetails } from '../App/selectors';
 
 /* eslint-disable react/prefer-stateless-function */
 export class SignUp extends React.PureComponent {
+  state = { password1: '' };
+
   componentDidMount() {
-    console.log(this.props, 'props');
-    const { onUpdateErrorMsg } = this.props;
-    onUpdateErrorMsg('Error');
+    const { successMsg, onUpdateSuccessMsg } = this.props;
+    if (successMsg) {
+      onUpdateSuccessMsg();
+    }
   }
 
+  handleOnSubmitClick = e => {
+    e.preventDefault();
+    const { password1, password2 } = this.state;
+    const { onUpdateErrorMsg, user, userRegistration } = this.props;
+    if (password1 !== password2) {
+      onUpdateErrorMsg('Passwords does not matched !');
+    } else {
+      user.password = password1;
+      userRegistration(user);
+    }
+  };
+
+  handleFormPasswordChange = (prop, value) => {
+    this.setState({ [prop]: value });
+  };
+
+  handleFormChange = (prop, value) => {
+    const { onUpdateUserDetails } = this.props;
+    onUpdateUserDetails({ prop, value });
+  };
+
   render() {
+    const { errorMsg, loading, successMsg } = this.props;
     return (
       <div>
         <Helmet>
           <title>SignUp</title>
           <meta name="description" content="Description of SignUp" />
         </Helmet>
+        <Header height={40} width={40} />
+        <SignUpWrapper>
+          <SignUpTitle>SIGN UP</SignUpTitle>
+          <SignUpContainer onSubmit={this.handleOnSubmitClick}>
+            <Input
+              name="userName"
+              type="text"
+              icon={<Location />}
+              placeholder="Enter User Name"
+              onChange={({ target }) =>
+                this.handleFormChange('userName', target.value)
+              }
+              required
+            />
+            <Input
+              name="email"
+              type="email"
+              icon={<Location />}
+              placeholder=" Enter Email "
+              onChange={({ target }) =>
+                this.handleFormChange('email', target.value)
+              }
+              required
+            />
+            <Input
+              name="mobileNo"
+              type="text"
+              icon={<Location />}
+              placeholder="Enter Mobile Number"
+              onChange={({ target }) =>
+                this.handleFormChange('mobileNo', target.value)
+              }
+              required
+            />
+            <Input
+              name="password1"
+              type="password"
+              icon={<Location />}
+              placeholder="Enter password"
+              onChange={({ target }) =>
+                this.handleFormPasswordChange('password1', target.value)
+              }
+              required
+            />
+            <Input
+              name="password2"
+              type="password"
+              icon={<Location />}
+              placeholder="confirm password"
+              onChange={({ target }) =>
+                this.handleFormPasswordChange('password2', target.value)
+              }
+              required
+            />
+            <SubmitButtonWrapper>
+              <SubmitButton type="submit" loading={loading}>
+                Submit
+              </SubmitButton>
+            </SubmitButtonWrapper>
+          </SignUpContainer>
+          {errorMsg ? (
+            <ErrorMessageContainer bgColor="#d8625e">
+              {errorMsg}
+            </ErrorMessageContainer>
+          ) : successMsg ? (
+            <ErrorMessageContainer bgColor="#4BDA49">
+              Registration Successful
+            </ErrorMessageContainer>
+          ) : (
+            ''
+          )}
+        </SignUpWrapper>
       </div>
     );
   }
@@ -39,16 +156,29 @@ export class SignUp extends React.PureComponent {
 SignUp.propTypes = {
   // dispatch: PropTypes.func.isRequired,
   onUpdateErrorMsg: PropTypes.func.isRequired,
+  onUpdateUserDetails: PropTypes.func.isRequired,
+  userRegistration: PropTypes.func,
+  user: PropTypes.object,
+  loading: PropTypes.bool,
+  errorMsg: PropTypes.string,
+  successMsg: PropTypes.bool,
+  onUpdateSuccessMsg: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   signUp: makeSelectSignUp(),
   errorMsg: selectErrorMsg(),
+  user: selectUserDetails(),
+  loading: selectLoading(),
+  successMsg: selectSuccessMsg(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     onUpdateErrorMsg: data => dispatch(updateError(data)),
+    onUpdateUserDetails: data => dispatch(updateUserDetails(data)),
+    userRegistration: data => dispatch(registration(data)),
+    onUpdateSuccessMsg: () => dispatch(updateSuccessMsg()),
   };
 }
 
@@ -58,8 +188,10 @@ const withConnect = connect(
 );
 
 const withReducer = injectReducer({ key: 'signUp', reducer });
+const withSaga = injectSaga({ key: 'signUp', saga });
 
 export default compose(
   withReducer,
+  withSaga,
   withConnect,
 )(SignUp);
