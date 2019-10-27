@@ -4,7 +4,6 @@ import Button from 'components/Button';
 
 export const SignUpWrapper = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   margin-top: 1rem;
@@ -18,7 +17,10 @@ export const SignUpContainer = styled.form`
   box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
   padding: 1rem;
   border-radius: 3px;
-  background: #fcf9f9;
+  background: rgb(244, 245, 247);
+  @media screen and (max-width: 32em) {
+    width: 90%;
+  }
 `;
 
 export const SignUpTitle = styled.div`
@@ -34,6 +36,9 @@ export const SignUpTitle = styled.div`
   font-size: 0.98 rem;
   margin-bottom: 1rem;
   color: #fffadf;
+  @media screen and (max-width: 32em) {
+    width: 90%;
+  }
 `;
 
 export const ErrorMessageContainer = styled.div`
@@ -47,6 +52,9 @@ export const ErrorMessageContainer = styled.div`
   border-radius: 5px;
   text-align: center;
   color: #fff;
+  @media screen and (max-width: 32em) {
+    width: 90%;
+  }
 `;
 
 export const SubmitButtonWrapper = styled.div`

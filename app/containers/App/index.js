@@ -11,7 +11,6 @@ import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { createStructuredSelector } from 'reselect';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -19,6 +18,7 @@ import injectReducer from 'utils/injectReducer';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import SignUp from 'containers/SignUp/Loadable';
+import SignIn from 'containers/SignIn/Loadable';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -31,7 +31,8 @@ class App extends React.PureComponent {
       <div>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route path="/" component={SignUp} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={SignIn} />
           <Route component={NotFoundPage} />
         </Switch>
         <GlobalStyle />
