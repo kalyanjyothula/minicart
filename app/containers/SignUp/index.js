@@ -16,7 +16,11 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import Header from 'components/Header';
 import Input from 'components/Input';
-import Location from 'icons/Location';
+import Email from 'icons/Email';
+import UserIcon from 'icons/UserIcon';
+import Mobile from 'icons/Mobile';
+import Password from 'icons/Password';
+
 import makeSelectSignUp, {
   selectErrorMsg,
   selectLoading,
@@ -83,7 +87,7 @@ export class SignUp extends React.PureComponent {
             <Input
               name="userName"
               type="text"
-              icon={<Location />}
+              icon={<UserIcon />}
               placeholder="Enter User Name"
               onChange={({ target }) =>
                 this.handleFormChange('userName', target.value)
@@ -93,7 +97,7 @@ export class SignUp extends React.PureComponent {
             <Input
               name="email"
               type="email"
-              icon={<Location />}
+              icon={<Email />}
               placeholder=" Enter Email "
               onChange={({ target }) =>
                 this.handleFormChange('email', target.value)
@@ -103,7 +107,7 @@ export class SignUp extends React.PureComponent {
             <Input
               name="mobileNo"
               type="text"
-              icon={<Location />}
+              icon={<Mobile />}
               placeholder="Enter Mobile Number"
               onChange={({ target }) =>
                 this.handleFormChange('mobileNo', target.value)
@@ -113,7 +117,7 @@ export class SignUp extends React.PureComponent {
             <Input
               name="password1"
               type="password"
-              icon={<Location />}
+              icon={<Password />}
               placeholder="Enter password"
               onChange={({ target }) =>
                 this.handleFormPasswordChange('password1', target.value)
@@ -123,7 +127,7 @@ export class SignUp extends React.PureComponent {
             <Input
               name="password2"
               type="password"
-              icon={<Location />}
+              icon={<Password />}
               placeholder="confirm password"
               onChange={({ target }) =>
                 this.handleFormPasswordChange('password2', target.value)
