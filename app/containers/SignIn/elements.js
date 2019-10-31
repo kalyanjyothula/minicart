@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import UserLogin from 'icons/UserLogin';
 import Button from 'components/Button';
+import { Link } from 'react-router-dom';
 
 export const LoginWrapper = styled.div`
   display: flex;
@@ -75,4 +76,24 @@ export const LinkContainer = styled.div`
 export const LinkButton = styled.button`
   background: transparent;
   text-decoration: underline;
+`;
+
+export const RedButton = styled(Link)`
+  height: 30px;
+  width: 40%;
+  padding: 0.4rem 0.95rem;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  background: #d8625e;
+  text-decoration: none;
+  color: #ffffff;
+`;
+
+export const ButtonsWrapper = styled.div`
+  width: 15%;
+  display: flex;
+  justify-content: space-evenly;
 `;

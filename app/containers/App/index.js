@@ -10,6 +10,7 @@
 import React from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
@@ -23,9 +24,14 @@ import reducer from './reducer';
 import saga from './saga';
 
 import GlobalStyle from '../../global-styles';
+import { fetchProducts } from './actions';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends React.PureComponent {
+  componentDidMount() {
+    this.props.onFetchProducts();
+  }
+
   render() {
     return (
       <div>
@@ -41,9 +47,19 @@ class App extends React.PureComponent {
   }
 }
 
+App.propTypes = {
+  onFetchProducts: PropTypes.func.isRequired,
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onFetchProducts: () => dispatch(fetchProducts()),
+  };
+}
+
 const withConnect = connect(
   null,
-  null,
+  mapDispatchToProps,
 );
 const withReducer = injectReducer({ key: 'app', reducer });
 const withSaga = injectSaga({ key: 'app', saga });

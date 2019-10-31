@@ -31,6 +31,8 @@ import {
   LogInButton,
   LinkContainer,
   LinkButton,
+  ButtonsWrapper,
+  RedButton,
 } from './elements';
 import { updateCredentials } from './actions';
 
@@ -52,7 +54,12 @@ export class SignIn extends React.PureComponent {
           <title>SignIn</title>
           <meta name="description" content="Description of SignIn" />
         </Helmet>
-        <Header height={40} width={40} />
+        <Header height={40} width={40}>
+          <ButtonsWrapper>
+            <RedButton to="/signup">sign up</RedButton>
+            <RedButton to="/login">sign in</RedButton>
+          </ButtonsWrapper>
+        </Header>
         <LoginWrapper>
           <LoginContainer>
             <LoginIconContainer />
