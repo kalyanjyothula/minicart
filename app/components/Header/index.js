@@ -9,15 +9,15 @@ import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
 /* eslint-disable react/prefer-stateless-function */
+import Logo from 'icons/Logo';
 import { MainHeaderContainer, TitleContainer, Title } from './elements';
-import Logo from '../../icons/Logo';
 
 class Header extends React.Component {
   render() {
     const { height, width, children } = this.props;
     return (
       <MainHeaderContainer>
-        <TitleContainer>
+        <TitleContainer to="/">
           <Logo height={height} width={width} />
           <Title>MiniCart</Title>
         </TitleContainer>

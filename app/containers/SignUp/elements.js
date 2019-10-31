@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from 'components/Button';
+import { Link } from 'react-router-dom';
 // import Input from 'components/Input';
 
 export const SignUpWrapper = styled.div`
@@ -66,4 +67,24 @@ export const SubmitButtonWrapper = styled.div`
 
 export const SubmitButton = styled(Button)`
   height: 35px;
+`;
+
+export const RedButton = styled(Link)`
+  height: 30px;
+  width: 40%;
+  padding: 0.4rem 0.95rem;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  background: #d8625e;
+  text-decoration: none;
+  color: #ffffff;
+`;
+
+export const ButtonsWrapper = styled.div`
+  width: 15%;
+  display: flex;
+  justify-content: space-evenly;
 `;

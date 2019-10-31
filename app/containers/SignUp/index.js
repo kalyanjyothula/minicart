@@ -36,6 +36,8 @@ import {
   SubmitButton,
   SignUpTitle,
   ErrorMessageContainer,
+  ButtonsWrapper,
+  RedButton,
 } from './elements';
 import { updateUserDetails } from '../App/actions';
 import { selectUserDetails } from '../App/selectors';
@@ -80,7 +82,12 @@ export class SignUp extends React.PureComponent {
           <title>SignUp</title>
           <meta name="description" content="Description of SignUp" />
         </Helmet>
-        <Header height={40} width={40} />
+        <Header height={40} width={40}>
+          <ButtonsWrapper>
+            <RedButton to="/signup"> sign up</RedButton>
+            <RedButton to="/login"> sign In</RedButton>
+          </ButtonsWrapper>
+        </Header>
         <SignUpWrapper>
           <SignUpTitle>SIGN UP</SignUpTitle>
           <SignUpContainer onSubmit={this.handleOnSubmitClick}>

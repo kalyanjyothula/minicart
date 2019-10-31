@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const MainHeaderContainer = styled.div`
   height: 60px;
@@ -12,9 +13,10 @@ export const MainHeaderContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const TitleContainer = styled.div`
+export const TitleContainer = styled(Link)`
   display: flex;
   align-items: center;
+  text-decoration: none;
 `;
 
 export const Title = styled.h1`
@@ -22,4 +24,5 @@ export const Title = styled.h1`
   font-weight: 600;
   user-select: none;
   font-size: 1.88rem;
+  color: #000;
 `;
