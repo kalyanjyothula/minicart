@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /**
  *
  * App.js
@@ -18,6 +19,7 @@ import injectReducer from 'utils/injectReducer';
 
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import MainPage from 'containers/MainPage/Loadable';
 import SignUp from 'containers/SignUp/Loadable';
 import SignIn from 'containers/SignIn/Loadable';
 import reducer from './reducer';
@@ -39,6 +41,7 @@ class App extends React.PureComponent {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={SignIn} />
+          <Route exact path="/home" component={MainPage} />
           <Route component={NotFoundPage} />
         </Switch>
         <GlobalStyle />

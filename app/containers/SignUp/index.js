@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-nested-ternary */
 /**
  *
@@ -50,6 +51,8 @@ export class SignUp extends React.PureComponent {
     const { successMsg, onUpdateSuccessMsg } = this.props;
     if (successMsg) {
       onUpdateSuccessMsg();
+      // const token = window.localStorage.getItem('userToken');
+      // token ? (window.location = '/home') : '';
     }
   }
 
@@ -82,7 +85,7 @@ export class SignUp extends React.PureComponent {
           <title>SignUp</title>
           <meta name="description" content="Description of SignUp" />
         </Helmet>
-        <Header height={40} width={40}>
+        <Header height={40} width={40} url="/">
           <ButtonsWrapper>
             <RedButton to="/signup"> sign up</RedButton>
             <RedButton to="/login"> sign In</RedButton>

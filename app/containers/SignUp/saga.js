@@ -8,14 +8,17 @@ export function* registration({ payload }) {
     // const url = 'https://git.heroku.com/minicart-api.git/api/signup';
     const url = 'http://localhost:4000/api/signup';
     const {
-      data: { success },
+      data: { success, token },
     } = yield call(axios, {
       method: 'post',
       data: payload,
       url,
     });
     console.log(success, 'saga');
-    if (success) yield put(registrationSuccess());
+    if (success) {
+      window.localStorage.setItem('userToken', token);
+      yield put(registrationSuccess());
+    }
   } catch (err) {
     yield put(registrationFailed());
   }

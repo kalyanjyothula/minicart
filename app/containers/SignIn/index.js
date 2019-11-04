@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /**
  *
  * SignIn
@@ -34,10 +35,15 @@ import {
   ButtonsWrapper,
   RedButton,
 } from './elements';
-import { updateCredentials } from './actions';
+import { updateCredentials, userLogin } from './actions';
 
 /* eslint-disable react/prefer-stateless-function */
 export class SignIn extends React.PureComponent {
+  componentDidMount() {
+    const token = window.localStorage.getItem('userToken');
+    token ? (window.location = '/home') : '';
+  }
+
   handleFormChange = (prop, value) => {
     const { onUpdateCredentials } = this.props;
     onUpdateCredentials({ prop, value });
@@ -45,6 +51,7 @@ export class SignIn extends React.PureComponent {
 
   handleOnSubmitClick = e => {
     e.preventDefault();
+    this.props.userLoginWithCredentials();
   };
 
   render() {
@@ -54,7 +61,7 @@ export class SignIn extends React.PureComponent {
           <title>SignIn</title>
           <meta name="description" content="Description of SignIn" />
         </Helmet>
-        <Header height={40} width={40}>
+        <Header height={40} width={40} url="/">
           <ButtonsWrapper>
             <RedButton to="/signup">sign up</RedButton>
             <RedButton to="/login">sign in</RedButton>
@@ -107,6 +114,7 @@ export class SignIn extends React.PureComponent {
 
 SignIn.propTypes = {
   onUpdateCredentials: PropTypes.func,
+  userLoginWithCredentials: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -116,6 +124,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     onUpdateCredentials: data => dispatch(updateCredentials(data)),
+    userLoginWithCredentials: () => dispatch(userLogin()),
   };
 }
 

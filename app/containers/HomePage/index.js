@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /**
  *
  * HomePage
@@ -57,6 +58,11 @@ import { updateTrendValue, updateRatingValue } from './actions';
 
 /* eslint-disable react/prefer-stateless-function */
 export class HomePage extends React.PureComponent {
+  componentDidMount() {
+    const token = window.localStorage.getItem('userToken');
+    token ? (window.location = '/home') : '';
+  }
+
   handleTrendClick = e => {
     const { trend } = this.props;
     const { value } = e.target;
@@ -211,7 +217,7 @@ export class HomePage extends React.PureComponent {
           <title>HomePage</title>
           <meta name="description" content="Description of HomePage" />
         </Helmet>
-        <Header height={40} width={40}>
+        <Header height={40} width={40} url="/">
           <ButtonsWrapper>
             <RedButton to="/signup"> Sign Up</RedButton>
             <RedButton to="/login">Sign in</RedButton>

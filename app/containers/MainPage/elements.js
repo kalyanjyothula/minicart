@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import Star from 'icons/Star';
 import Radio from 'components/Radio';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-export const HomePageWrapper = styled.div`
+export const MainPageWrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
 `;
 
-export const HomePageWrapperHeaderBar = styled.div`
+export const MainPageWrapperHeaderBar = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
@@ -151,33 +151,6 @@ export const PricingGoButton = styled.button`
   border-radius: 3px;
   font-size: 12px;
   border: 1px solid grey;
-`;
-export const RedButton = styled(Link)`
-  height: 30px;
-  width: 40%;
-  padding: 0.4rem 0.95rem;
-  border-radius: 5px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  background: #d8625e;
-  text-decoration: none;
-  color: #ffffff;
-  @media screen and (max-width: 32em) {
-    font-size: 0.46rem;
-    padding: 0.3rem 0.5rem;
-    height: 20px;
-  }
-`;
-
-export const ButtonsWrapper = styled.div`
-  width: 15%;
-  display: flex;
-  justify-content: space-evenly;
-  @media screen and (max-width: 32em) {
-    width: 35%;
-  }
 `;
 
 export const ProductItemWrapper = styled.div`
