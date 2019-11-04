@@ -76,15 +76,23 @@ export const RedButton = styled(Link)`
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 0.75rem;
   text-transform: uppercase;
   background: #d8625e;
   text-decoration: none;
   color: #ffffff;
+  @media screen and (max-width: 32em) {
+    font-size: 0.46rem;
+    padding: 0.3rem 0.5rem;
+    height: 20px;
+  }
 `;
 
 export const ButtonsWrapper = styled.div`
   width: 15%;
   display: flex;
   justify-content: space-evenly;
+  @media screen and (max-width: 32em) {
+    width: 35%;
+  }
 `;

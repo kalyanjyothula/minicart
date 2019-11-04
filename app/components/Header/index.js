@@ -14,10 +14,10 @@ import { MainHeaderContainer, TitleContainer, Title } from './elements';
 
 class Header extends React.Component {
   render() {
-    const { height, width, children } = this.props;
+    const { height, width, url, children } = this.props;
     return (
       <MainHeaderContainer>
-        <TitleContainer to="/">
+        <TitleContainer to={url}>
           <Logo height={height} width={width} />
           <Title>MiniCart</Title>
         </TitleContainer>
@@ -31,6 +31,7 @@ Header.propTypes = {
   height: PropTypes.number,
   width: PropTypes.number,
   children: PropTypes.node,
+  url: PropTypes.string,
 };
 
 export default Header;

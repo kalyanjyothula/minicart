@@ -8,9 +8,7 @@ import { initialState } from './reducer';
 const selectSignInDomain = state => state.get('signIn', initialState);
 
 const selectCredentials = () =>
-  createSelector(selectSignInDomain, substate =>
-    substate.get('credentials').toJs(),
-  );
+  createSelector(selectSignInDomain, substate => substate.get('credentials'));
 
 const selectErrorMsg = () =>
   createSelector(selectSignInDomain, substate => substate.get('errorMsg'));
