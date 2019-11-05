@@ -7,6 +7,11 @@ import { initialState } from './reducer';
 
 const selectMainPageDomain = state => state.get('mainPage', initialState);
 
+const selectTrend = () =>
+  createSelector(selectMainPageDomain, substate => substate.get('trend'));
+
+const selectRating = () =>
+  createSelector(selectMainPageDomain, substate => substate.get('rating'));
 /**
  * Other specific selectors
  */
@@ -19,4 +24,4 @@ const makeSelectMainPage = () =>
   createSelector(selectMainPageDomain, substate => substate.toJS());
 
 export default makeSelectMainPage;
-export { selectMainPageDomain };
+export { selectMainPageDomain, selectTrend, selectRating };

@@ -51,8 +51,8 @@ export class SignUp extends React.PureComponent {
     const { successMsg, onUpdateSuccessMsg } = this.props;
     if (successMsg) {
       onUpdateSuccessMsg();
-      // const token = window.localStorage.getItem('userToken');
-      // token ? (window.location = '/home') : '';
+      const token = window.localStorage.getItem('userToken');
+      token ? (window.location = '/home') : '';
     }
   }
 

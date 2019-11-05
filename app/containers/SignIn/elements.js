@@ -7,6 +7,7 @@ export const LoginWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   margin-top: 3rem;
 `;
 
@@ -103,5 +104,21 @@ export const ButtonsWrapper = styled.div`
   justify-content: space-evenly;
   @media screen and (max-width: 32em) {
     width: 35%;
+  }
+`;
+
+export const ErrorMessageContainer = styled.div`
+  height: 40px;
+  width: 30%;
+  transition: box-shadow 0.15s ease;
+  box-shadow: 0 1px 3px rgba(50, 50, 93, 0.15), 0 1px 0 rgba(0, 0, 0, 0.02);
+  padding: 0.5rem 0.8rem;
+  background: #d8625e;
+  margin-top: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff;
+  @media screen and (max-width: 32em) {
+    width: 90%;
   }
 `;

@@ -9,18 +9,20 @@ export function* userLogin() {
   try {
     const url = 'http://localhost:4000/api/login';
     const credentials = yield select(selectCredentials());
-    const {
-      data: { success, token },
-    } = yield call(axios, {
-      method: 'POST',
-      data: credentials,
-      url,
-    });
-    if (success) {
-      window.localStorage.set('userToken', token);
-      window.location = '/home';
-      yield put(userLoginSuccess());
-    } else yield put(userLoginFailed());
+    if (credentials) {
+      const {
+        data: { success, token },
+      } = yield call(axios, {
+        method: 'POST',
+        data: credentials,
+        url,
+      });
+      if (success) {
+        window.localStorage.setItem('userToken', token);
+        window.location = '/home';
+        yield put(userLoginSuccess());
+      } else yield put(userLoginFailed());
+    }
   } catch (err) {
     console.log(err);
     yield put(userLoginFailed());

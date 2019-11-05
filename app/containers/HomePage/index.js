@@ -9,6 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { Switch, Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -20,6 +21,7 @@ import Input from 'components/Input';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import CheckBox from 'components/CheckBox';
+import ProductView from '../ProductView/Loadable';
 import makeSelectHomePage, { selectTrend, selectRating } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -95,9 +97,9 @@ export class HomePage extends React.PureComponent {
     } else newProducts = products;
     if (newProducts.length === 0) return <h1>No Products Found !</h1>;
     return newProducts.map(item => {
-      const { name, imgUrl, cost } = item;
+      const { _id, name, imgUrl, cost } = item;
       return (
-        <ProductItemWrapper>
+        <ProductItemWrapper key={_id}>
           <ImageContainer>
             <Image src={imgUrl} />
           </ImageContainer>
@@ -114,7 +116,7 @@ export class HomePage extends React.PureComponent {
               </ItemRating>
             </ItemPropertiesContainer>
           </ItemContentContainer>
-          <ItemViewButton>View</ItemViewButton>
+          <ItemViewButton to="/login">View</ItemViewButton>
         </ProductItemWrapper>
       );
     });
@@ -217,6 +219,9 @@ export class HomePage extends React.PureComponent {
           <title>HomePage</title>
           <meta name="description" content="Description of HomePage" />
         </Helmet>
+        <Switch>
+          <Route path="/home/:id" component={ProductView} />
+        </Switch>
         <Header height={40} width={40} url="/">
           <ButtonsWrapper>
             <RedButton to="/signup"> Sign Up</RedButton>
@@ -234,7 +239,7 @@ export class HomePage extends React.PureComponent {
             </LocationInputContainer>
             <SearchBarContainer>
               <Input
-                autocomplete="off"
+                autoComplete="off"
                 icon={<SearchBar />}
                 name="search"
                 placeholder="Search your item . . ."
