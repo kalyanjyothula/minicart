@@ -19,7 +19,7 @@ import Header from 'components/Header';
 import Input from 'components/Input';
 import UserIcon from 'icons/UserIcon';
 import Password from 'icons/Password';
-import makeSelectSignIn from './selectors';
+import makeSelectSignIn, { selectErrorMsg, selectLoading } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import {
@@ -34,6 +34,7 @@ import {
   LinkButton,
   ButtonsWrapper,
   RedButton,
+  ErrorMessageContainer,
 } from './elements';
 import { updateCredentials, userLogin } from './actions';
 
@@ -55,6 +56,7 @@ export class SignIn extends React.PureComponent {
   };
 
   render() {
+    const { loading, errorMsg } = this.props;
     return (
       <div>
         <Helmet>
@@ -93,7 +95,7 @@ export class SignIn extends React.PureComponent {
                 required
               />
               <LogInButtonContainer>
-                <LogInButton>Login</LogInButton>
+                <LogInButton loading={loading}>Login</LogInButton>
               </LogInButtonContainer>
             </LoginInputContainer>
             <LinkContainer>
@@ -106,6 +108,11 @@ export class SignIn extends React.PureComponent {
               </LinkButton>
             </LinkContainer>
           </LoginContainer>
+          {errorMsg ? (
+            <ErrorMessageContainer>{errorMsg}</ErrorMessageContainer>
+          ) : (
+            ''
+          )}
         </LoginWrapper>
       </div>
     );
@@ -115,10 +122,14 @@ export class SignIn extends React.PureComponent {
 SignIn.propTypes = {
   onUpdateCredentials: PropTypes.func,
   userLoginWithCredentials: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  errorMsg: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   signIn: makeSelectSignIn(),
+  loading: selectLoading(),
+  errorMsg: selectErrorMsg(),
 });
 
 function mapDispatchToProps(dispatch) {

@@ -257,10 +257,11 @@ export const Image = styled.img`
   border-radius: 3px;
 `;
 
-export const ItemViewButton = styled.div`
+export const ItemViewButton = styled(Link)`
   height: 50px;
   width: 100%;
   background: #f75214;
+  text-decoration: none;
   text-transform: uppercase;
   font-size: 1.1rem;
   padding-top: 0.7rem;
