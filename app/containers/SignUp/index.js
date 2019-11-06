@@ -52,7 +52,7 @@ export class SignUp extends React.PureComponent {
     if (successMsg) {
       onUpdateSuccessMsg();
       const token = window.localStorage.getItem('userToken');
-      token ? (window.location = '/home') : '';
+      token ? (window.location = '/app/home') : '';
     }
   }
 
@@ -85,7 +85,7 @@ export class SignUp extends React.PureComponent {
           <title>SignUp</title>
           <meta name="description" content="Description of SignUp" />
         </Helmet>
-        <Header height={40} width={40} url="/">
+        <Header height={40} width={40} url="/home">
           <ButtonsWrapper>
             <RedButton to="/signup"> sign up</RedButton>
             <RedButton to="/login"> sign In</RedButton>

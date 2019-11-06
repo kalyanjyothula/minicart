@@ -42,7 +42,7 @@ import { updateCredentials, userLogin } from './actions';
 export class SignIn extends React.PureComponent {
   componentDidMount() {
     const token = window.localStorage.getItem('userToken');
-    token ? (window.location = '/home') : '';
+    token ? (window.location = '/app/home') : '';
   }
 
   handleFormChange = (prop, value) => {
@@ -63,7 +63,7 @@ export class SignIn extends React.PureComponent {
           <title>SignIn</title>
           <meta name="description" content="Description of SignIn" />
         </Helmet>
-        <Header height={40} width={40} url="/">
+        <Header height={40} width={40} url="/home">
           <ButtonsWrapper>
             <RedButton to="/signup">sign up</RedButton>
             <RedButton to="/login">sign in</RedButton>
