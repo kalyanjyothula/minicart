@@ -16,10 +16,8 @@ import { compose } from 'redux';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import MainPage from 'containers/MainPage/Loadable';
 import SignUp from 'containers/SignUp/Loadable';
 import SignIn from 'containers/SignIn/Loadable';
 import reducer from './reducer';
@@ -27,6 +25,7 @@ import saga from './saga';
 
 import GlobalStyle from '../../global-styles';
 import { fetchProducts } from './actions';
+import { Layout } from '../Layout';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends React.PureComponent {
@@ -38,10 +37,10 @@ class App extends React.PureComponent {
     return (
       <div>
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/home" component={HomePage} />
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={SignIn} />
-          <Route exact path="/home" component={MainPage} />
+          <Route path="/app/" component={Layout} />
           <Route component={NotFoundPage} />
         </Switch>
         <GlobalStyle />

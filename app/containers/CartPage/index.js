@@ -1,6 +1,6 @@
 /**
  *
- * ProductView
+ * CartPage
  *
  */
 
@@ -11,35 +11,33 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import Header from 'components/Header';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import makeSelectProductView from './selectors';
+import makeSelectCartPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
 /* eslint-disable react/prefer-stateless-function */
-export class ProductView extends React.Component {
+export class CartPage extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         <Helmet>
-          <title>ProductView</title>
-          <meta name="description" content="Description of ProductView" />
+          <title>CartPage</title>
+          <meta name="description" content="Description of CartPage" />
         </Helmet>
-        hello product view
+        <div>hello</div>
       </div>
     );
   }
 }
 
-ProductView.propTypes = {
+CartPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  productView: makeSelectProductView(),
+  cartPage: makeSelectCartPage(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -53,11 +51,11 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer({ key: 'productView', reducer });
-const withSaga = injectSaga({ key: 'productView', saga });
+const withReducer = injectReducer({ key: 'cartPage', reducer });
+const withSaga = injectSaga({ key: 'cartPage', saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(ProductView);
+)(CartPage);

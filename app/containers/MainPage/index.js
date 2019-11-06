@@ -11,7 +11,6 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import Header from 'components/Header';
 import Star from 'icons/Star';
 import CheckBox from 'components/CheckBox';
 import Location from 'icons/Location';
@@ -22,7 +21,7 @@ import injectReducer from 'utils/injectReducer';
 
 import { selectProducts } from '../App/selectors';
 import makeSelectMainPage, { selectTrend, selectRating } from './selectors';
-import { updateRatingValue, updateTrendValue, userLogout } from './actions';
+import { updateRatingValue, updateTrendValue } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import {
@@ -52,14 +51,6 @@ import {
   ItemCost,
   ItemRating,
   ItemViewButton,
-  MainPageHeaderBarWrapper,
-  ProfileIcon,
-  UserCartIcon,
-  LogoutIcon,
-  UserIconLink,
-  ProfileDropDownWrapper,
-  DropDownWrapper,
-  DropDownElements,
 } from './elements';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -70,10 +61,6 @@ export class MainPage extends React.PureComponent {
       window.location = '/login';
     }
   }
-
-  handleLogoutClick = () => {
-    this.props.onUserLogout();
-  };
 
   handleTrendClick = e => {
     const { trend } = this.props;
@@ -126,7 +113,7 @@ export class MainPage extends React.PureComponent {
               </ItemRating>
             </ItemPropertiesContainer>
           </ItemContentContainer>
-          <ItemViewButton to={`/home/${_id}`} target="_blank">
+          <ItemViewButton to={`/app/home/${_id}`} target="_blank">
             View
           </ItemViewButton>
         </ProductItemWrapper>
@@ -231,24 +218,6 @@ export class MainPage extends React.PureComponent {
           <title>MainPage</title>
           <meta name="description" content="Description of MainPage" />
         </Helmet>
-        <Header height={40} width={40} url="/home">
-          <MainPageHeaderBarWrapper>
-            <DropDownWrapper>
-              <ProfileIcon />
-              <ProfileDropDownWrapper>
-                <DropDownElements to="/userdetails">
-                  Edit Profile
-                </DropDownElements>
-                <DropDownElements to="/orders">Your Orders</DropDownElements>
-                <DropDownElements to="/settings">Settings</DropDownElements>
-              </ProfileDropDownWrapper>
-            </DropDownWrapper>
-            <UserIconLink to="/cart">
-              <UserCartIcon />
-            </UserIconLink>
-            <LogoutIcon onClick={this.handleLogoutClick} />
-          </MainPageHeaderBarWrapper>
-        </Header>
         <MainPageWrapper>
           <MainPageWrapperHeaderBar>
             <LocationInputContainer>
@@ -299,7 +268,6 @@ MainPage.propTypes = {
   trend: PropTypes.string,
   onUpdateRating: PropTypes.func.isRequired,
   rating: PropTypes.string,
-  onUserLogout: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -313,7 +281,6 @@ function mapDispatchToProps(dispatch) {
   return {
     onUpdateTrend: data => dispatch(updateTrendValue(data)),
     onUpdateRating: data => dispatch(updateRatingValue(data)),
-    onUserLogout: () => dispatch(userLogout()),
   };
 }
 

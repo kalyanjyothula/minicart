@@ -9,7 +9,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import { Switch, Route } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -21,7 +20,6 @@ import Input from 'components/Input';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import CheckBox from 'components/CheckBox';
-import ProductView from '../ProductView/Loadable';
 import makeSelectHomePage, { selectTrend, selectRating } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -62,7 +60,7 @@ import { updateTrendValue, updateRatingValue } from './actions';
 export class HomePage extends React.PureComponent {
   componentDidMount() {
     const token = window.localStorage.getItem('userToken');
-    token ? (window.location = '/home') : '';
+    token ? (window.location = '/app/home') : '';
   }
 
   handleTrendClick = e => {
@@ -219,10 +217,7 @@ export class HomePage extends React.PureComponent {
           <title>HomePage</title>
           <meta name="description" content="Description of HomePage" />
         </Helmet>
-        <Switch>
-          <Route path="/home/:id" component={ProductView} />
-        </Switch>
-        <Header height={40} width={40} url="/">
+        <Header height={40} width={40} url="/home">
           <ButtonsWrapper>
             <RedButton to="/signup"> Sign Up</RedButton>
             <RedButton to="/login">Sign in</RedButton>
