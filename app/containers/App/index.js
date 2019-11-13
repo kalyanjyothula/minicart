@@ -9,7 +9,7 @@
  */
 
 import React from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
@@ -41,6 +41,7 @@ class App extends React.PureComponent {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={SignIn} />
           <Route path="/app/" component={Layout} />
+          <Redirect from="/" to="/home" />
           <Route component={NotFoundPage} />
         </Switch>
         <GlobalStyle />

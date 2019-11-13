@@ -9,14 +9,14 @@ export const MainPageHeaderBarWrapper = styled.div`
   width: 10%;
   justify-content: space-evenly;
   @media screen and (max-width: 32em) {
-    width: 25%;
+    width: 30%;
   }
 `;
 
 export const ProfileIcon = styled(UserIcon)`
   height: 1.8rem;
   width: 1.8rem;
-  margin: 2px;
+  margin: 0 2px;
   cursor: pointer;
 `;
 
@@ -31,8 +31,8 @@ export const UserCartIcon = styled(CartIcon)`
 `;
 
 export const LogoutIcon = styled(Logout)`
-  height: 1.6rem;
-  width: 1.6rem;
+  height: 1.8rem;
+  width: 1.8rem;
   margin: 2px;
   cursor: pointer;
 `;
@@ -56,7 +56,7 @@ export const ProfileDropDownWrapper = styled.div`
   } */
 `;
 
-export const DropDownWrapper = styled.p`
+export const DropDownWrapper = styled.button`
   margin: 0;
   overflow: hidden;
   & :hover div {
@@ -71,7 +71,7 @@ export const DropDownElements = styled(Link)`
   color: #a0a0a0;
   text-decoration: none;
   font-weight: 400;
-  padding: 0.5rem 1.6rem;
+  padding: 0.5rem 1.3rem;
   border-bottom: 1px solid #d2d0d0;
   text-align: left;
   &:hover {
