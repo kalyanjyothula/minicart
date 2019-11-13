@@ -14,7 +14,7 @@ import Header from 'components/Header';
 import CartPage from '../CartPage/Loadable';
 import MainPage from '../MainPage/Loadable';
 import ProductView from '../ProductView/Loadable';
-import { userLogout, fetchProducts } from '../App/actions';
+import { userLogout } from '../App/actions';
 import {
   MainPageHeaderBarWrapper,
   DropDownWrapper,
@@ -29,7 +29,7 @@ import {
 /* eslint-disable react/prefer-stateless-function */
 export class Layout extends React.Component {
   handleLogoutClick = () => {
-    this.props.onUserLogout();
+    console.log(this.props);
   };
 
   render() {
@@ -74,7 +74,6 @@ Layout.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     onUserLogout: () => dispatch(userLogout()),
-    onFetchUser: () => dispatch(fetchProducts()),
   };
 }
 

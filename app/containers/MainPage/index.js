@@ -113,9 +113,7 @@ export class MainPage extends React.PureComponent {
               </ItemRating>
             </ItemPropertiesContainer>
           </ItemContentContainer>
-          <ItemViewButton to={`/app/home/${_id}`} target="_blank">
-            View
-          </ItemViewButton>
+          <ItemViewButton to={`/app/home/${_id}`}>View</ItemViewButton>
         </ProductItemWrapper>
       );
     });
